@@ -10,10 +10,23 @@ e.g `vaultenv production` or `vaultenv staging`
 `.vaultenvrc` for configuration.
 
 Possible configs:
-<env name> -> <vault path>
+`<env name> -> <vault path>`
+
+```
+staging='secrets/staging/environment'
+production='secrets/production/environment'
+```
 
 
 Modify bash PS1 to display active environment
+```bash
+tethik@tethik-N350DW:~/playground$ vaultenv staging
+(staging) tethik@tethik-N350DW:~$
+```
 
 
 pipenv integration
+```bash
+tethik@tethik-N350DW:~/playground$ pipenv shell
+(vaultenv-jkCJv85B) (staging) tethik@tethik-N350DW:~$
+```
