@@ -30,3 +30,11 @@ pipenv integration
 tethik@tethik-N350DW:~/playground$ pipenv shell
 (vaultenv-jkCJv85B) (staging) tethik@tethik-N350DW:~$
 ```
+
+switching between environments
+```bash
+(local) tethik@tethik-N350DW:~$ vaultenv staging
+* .env was updated!
+* Environment varibles loaded into this shell!
+(staging) tethik@tethik-N350DW:~$
+```
