@@ -1,7 +1,9 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
+
 
 [dev-packages]
 
@@ -14,7 +16,10 @@ pytest = "*"
 click = "*"
 hvac = "*"
 colorama = "*"
+python-dotenv = "*"
+pyyaml = "*"
 
 
 [requires]
+
 python_version = "3.6"

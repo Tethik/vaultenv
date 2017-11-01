@@ -7,7 +7,7 @@ vaultenv <env name>
 Read <env name> into .env
 e.g `vaultenv production` or `vaultenv staging`
 
-`.vaultenvrc` for configuration.
+`.vaultenv` for configuration.
 
 Possible configs:
 `<env name> -> <vault path>`
