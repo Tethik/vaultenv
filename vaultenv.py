@@ -13,18 +13,6 @@ def loadconfig():
         print(cfg)
         return cfg
 
-def load_env_into_current_shell(name):
-    """
-    loads and activates environment variables.
-    """
-    with open("tmp", "w") as f:
-        for key,val in parse_dotenv(".env"):
-            f.write(f'export {key}={val}\n')
-        f.write(f'export PS1="({name}) {os.environ["PS1"]}"\n')
-    subprocess.Popen(['pwd'], shell=True)
-    subprocess.Popen(['source', './tmp'], shell=True)
-
-
 def init():
     """
     Command to initialize a .vaultenv config file.
@@ -33,7 +21,8 @@ def init():
 
 @click.command()
 @click.option("--name", prompt='Environment name')
-def activate(name):
+@click.option("--env-file", prompt='Env file name', default=".env")
+def activate(name, env_file):
     xargs = {
         'verify': os.getenv('VAULT_CACERT', None),
         'url': os.getenv('VAULT_ADDR', 'http://127.0.0.1:8200'),
@@ -42,19 +31,23 @@ def activate(name):
 
     config = loadconfig()
 
-    # modify environment:
-    # os.environ["PS1"] = f'({name}) {os.environ["PS1"]}'
-    shellprogram = os.environ["SHELL"]
-
+    # modify environment
     try:
         client = hvac.Client(**xargs)
         values = client.read(config[name])["data"]
-        flatten_and_write(".env", values)
-        # load_env_into_current_shell(name)
     except hvac.exceptions.InvalidRequest as ex:
         if "missing client token" in str(ex):
             click.secho("Please authenticate to Vault.", sys.stderr, fg='red')
+        else:
+            click.secho(str(ex), sys.stderr, fg='red')
+        sys.exit(1)
 
+    flatten_and_write(env_file, values)
+    click.secho('Loaded "{name}"-environment variables into {env_file}'.format(name=name, env_file=env_file), fg='green')
+
+
+def main():
+    activate()
 
 if __name__ == '__main__':
-    activate()
+    main()
