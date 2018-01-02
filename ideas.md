@@ -1,5 +1,11 @@
 # Ideas for this implementation
 
+Setup:
+```bash
+vaultenv init
+```
+Should ask for repository name, would be nice if it defaulted to something useful (perhaps use `appdir` to save a global default)
+
 Basic functionality:
 ```bash
 vaultenv <env name>

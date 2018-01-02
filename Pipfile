@@ -18,6 +18,7 @@ hvac = "*"
 colorama = "*"
 python-dotenv = "*"
 pyyaml = "*"
+click-default-group = "*"
 
 
 [requires]

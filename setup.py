@@ -21,6 +21,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "click",
+        "click_default_group",
         "hvac",
         "colorama",
         "python-dotenv",
