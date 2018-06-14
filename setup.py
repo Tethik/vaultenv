@@ -24,7 +24,7 @@ setup(
         "click_default_group",
         "hvac",
         "colorama",
-        "python-dotenv",
+        "python-dotenv==0.7.1",
         "pyyaml"
     ],
     license=LICENSE,
